@@ -12,15 +12,61 @@ It was designed to help DBAs detect delays in log apply on physical standby data
 - Validates database role (Primary vs. Standby)
 - Outputs numeric and human-readable values
 - Easy to integrate with:
-  - Cron jobs
-  - Monitoring dashboards
-  - Alerting pipelines (email, Slack, webhook, etc.)
-- Works on **Exadata** and On-Prem Oracle deployments
+  - cron jobs
+  - monitoring dashboards
+  - alerting pipelines (email, Slack, webhooks, etc.)
+- Works on **Exadata** and on-prem Oracle deployments
 
-## Example Query Used
+## Example query used
 The script queries:
 
-```sql
-SELECT value, time_computed
-FROM v$dataguard_stats
-WHERE name = 'apply lag';
+    SELECT value, time_computed
+    FROM v$dataguard_stats
+    WHERE name = 'apply lag';
+
+## Requirements
+- Linux environment
+- Bash
+- SQL*Plus client installed
+- Oracle environment configured (`ORACLE_HOME`, `ORACLE_SID`, `PATH`)
+- User with permission to query V$ views (SYS, SYSDG, or a user with `SELECT_CATALOG_ROLE`)
+
+## Usage
+
+1. Clone the repository:
+
+        git clone https://github.com/SEU_USUARIO/Data-Guard-Apply-Lag-Monitor.git
+        cd Data-Guard-Apply-Lag-Monitor
+
+2. Edit database connection variables inside the script:
+
+        vi dg_apply_lag.sh
+
+3. Make the script executable:
+
+        chmod +x dg_apply_lag.sh
+
+4. Run the monitor:
+
+        ./dg_apply_lag.sh
+
+## Script output example
+
+    Apply Lag: +00 00:00:02
+    Time Computed: 2025-12-10 14:33:21
+    Status: OK – Apply is synchronized.
+
+If lag exceeds predefined thresholds, the script can be easily extended to trigger alerts or integrate with external monitoring/alerting tools.
+
+## File structure
+
+    Data-Guard-Apply-Lag-Monitor/
+    ├── dg_apply_lag.sh
+    └── README.md
+
+## Notes
+This script is used in real-world **Exadata Cloud@Customer** environments where Data Guard apply performance is mission-critical.  
+It provides a lightweight and reliable way to monitor synchronization between primary and standby databases.
+
+## License
+MIT License
