@@ -8,10 +8,7 @@
 # - Converte o value para segundos
 # - Imprime lag e status
 #
-# Uso:
-#   ./dg_apply_lag.sh                     # usa / as sysdba com ORACLE_SID
-#   ./dg_apply_lag.sh "user/pwd@tns"      # usa connect string explícito
-#
+# Created by: Gustavo Borges Evangelista
 
 # Limites em segundos
 WARN_THRESHOLD=60      # 1 minuto
