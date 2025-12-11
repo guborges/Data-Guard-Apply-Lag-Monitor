@@ -35,7 +35,7 @@ The script queries:
 
 1. Clone the repository:
 
-        git clone https://github.com/SEU_USUARIO/Data-Guard-Apply-Lag-Monitor.git
+        git clone https://github.com/guborges/Data-Guard-Apply-Lag-Monitor.git
         cd Data-Guard-Apply-Lag-Monitor
 
 2. Edit database connection variables inside the script:
